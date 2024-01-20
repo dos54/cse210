@@ -1,0 +1,69 @@
+Journal Program Specification 
+
+What does the program do? 
+
+Takes journal entries, saves, and opens them. 
+
+What user inputs does it have? 
+
+Choosing what to do from a menu 
+
+Choose a file 
+
+String / text input 
+
+What output does it produce? 
+
+Journal entries, with date, saved as files. 
+
+Question prompts associated with entries 
+
+How does the program end? 
+
+It will be a menu option, to simply exit the program 
+
+ 
+
+Step 5: Determine the Classes 
+
+ 
+
+Entry 
+
+    Display() - Print the entry and details to the screen 
+
+    _entryText - string 
+
+    _dateTime – string 
+
+    _promptText - string 
+
+Journal 
+
+    SaveToFile() - Saves the journal entry to a file 
+
+    (file : string) 
+
+    LoadFromFile() - Load the journal entry from a file 
+
+    (file : string) 
+
+    AddEntry() - Adds a new entry to a journal 
+
+    (newEntry : Entry) : void 
+
+    DisplayAll() - Displays the entire journal 
+
+    : void 
+
+    _entries – List<Entry> 
+
+    PromptGenerator 
+
+        GeneratePromt() - Get a new prompt for a journal entry 
+        
+        _prompts – List<String> 
+
+ 
+
+ 
