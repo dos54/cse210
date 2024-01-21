@@ -21,4 +21,8 @@ public class PromptGenerator {
         
         return prompt;
     }
+
+    public void DisplayRandomPrompt(){
+        Console.WriteLine(GeneratePrompt());
+    }
 }
