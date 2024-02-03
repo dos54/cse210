@@ -1,5 +1,11 @@
 using System;
 
+// To exceed requirements I made a Menu and a MenuOptions classes to handle console menus. 
+// In the Menu class I added functionality to allow users to select an option by either typing the number listed or the title of the option.
+// I also used Lambda functions and other things throughout the program to make the program more flexible.
+// For many of my Getters and Setters I used C#'s built in notation for getters and setters, using 
+// get {function;} and 
+// set {function;}
 class Program
 {
     static void Main(string[] args)
