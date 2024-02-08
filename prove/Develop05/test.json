@@ -1,0 +1,17 @@
+{
+  "Score": 0,
+  "Goals": [
+    {
+      "Name": "a",
+      "Description": "a",
+      "PointsValue": 3,
+      "IsComplete": false
+    },
+    {
+      "Name": "bad",
+      "Description": "sad",
+      "PointsValue": 40,
+      "IsComplete": false
+    }
+  ]
+}
