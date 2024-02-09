@@ -1,17 +1,125 @@
 {
-  "Score": 0,
+  "Score": 1510,
   "Goals": [
     {
-      "Name": "a",
-      "Description": "a",
-      "PointsValue": 3,
+      "Type": "SimpleGoal",
+      "Name": "Read a book",
+      "Description": "Finish reading \u0027The Great Gatsby\u0027",
+      "PointsValue": 50,
+      "IsComplete": true
+    },
+    {
+      "Type": "EternalGoal",
+      "Name": "Daily Exercise",
+      "Description": "Exercise for at least 30 minutes",
+      "PointsValue": 20,
       "IsComplete": false
     },
     {
-      "Name": "bad",
-      "Description": "sad",
+      "Type": "ChecklistGoal",
+      "Name": "Visit 5 National Parks",
+      "Description": "Explore new outdoor areas",
+      "PointsValue": 50,
+      "BonusPoints": 150,
+      "IsComplete": false,
+      "TimesCompleted": 2,
+      "Target": 5
+    },
+    {
+      "Type": "SimpleGoal",
+      "Name": "Learn a new language",
+      "Description": "Complete 5 Duolingo lessons in Spanish",
+      "PointsValue": 30,
+      "IsComplete": false
+    },
+    {
+      "Type": "EternalGoal",
+      "Name": "Write daily",
+      "Description": "Write in a journal every night",
+      "PointsValue": 10,
+      "IsComplete": true
+    },
+    {
+      "Type": "ChecklistGoal",
+      "Name": "Master Python",
+      "Description": "Complete Python coding challenges",
+      "PointsValue": 100,
+      "BonusPoints": 200,
+      "IsComplete": true,
+      "TimesCompleted": 10,
+      "Target": 10
+    },
+    {
+      "Type": "SimpleGoal",
+      "Name": "Meditate",
+      "Description": "Meditate for 10 minutes",
+      "PointsValue": 25,
+      "IsComplete": true
+    },
+    {
+      "Type": "EternalGoal",
+      "Name": "Healthy Eating",
+      "Description": "Eat five servings of fruits and vegetables daily",
+      "PointsValue": 15,
+      "IsComplete": false
+    },
+    {
+      "Type": "ChecklistGoal",
+      "Name": "Complete a Marathon",
+      "Description": "Train for and complete a marathon",
+      "PointsValue": 75,
+      "BonusPoints": 250,
+      "IsComplete": false,
+      "TimesCompleted": 0,
+      "Target": 1
+    },
+    {
+      "Type": "SimpleGoal",
+      "Name": "Paint a Landscape",
+      "Description": "Paint a landscape using watercolors",
       "PointsValue": 40,
       "IsComplete": false
+    },
+    {
+      "Type": "EternalGoal",
+      "Name": "Stay Hydrated",
+      "Description": "Drink 8 glasses of water daily",
+      "PointsValue": 5,
+      "IsComplete": true
+    },
+    {
+      "Type": "ChecklistGoal",
+      "Name": "Read 12 Books a Year",
+      "Description": "Read at least one book each month",
+      "PointsValue": 60,
+      "BonusPoints": 180,
+      "IsComplete": true,
+      "TimesCompleted": 15,
+      "Target": 12
+    },
+    {
+      "Type": "SimpleGoal",
+      "Name": "Bake a Cake",
+      "Description": "Bake a chocolate cake from scratch",
+      "PointsValue": 35,
+      "IsComplete": true
+    },
+    {
+      "Type": "EternalGoal",
+      "Name": "Practice Guitar",
+      "Description": "Practice playing the guitar for 20 minutes daily",
+      "PointsValue": 25,
+      "IsComplete": false
+    },
+    {
+      "Type": "ChecklistGoal",
+      "Name": "Travel to New Countries",
+      "Description": "Visit at least 3 new countries",
+      "PointsValue": 90,
+      "BonusPoints": 300,
+      "IsComplete": true,
+      "TimesCompleted": 3,
+      "Target": 3
     }
   ]
 }

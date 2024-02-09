@@ -3,6 +3,7 @@ using System;
 public abstract class Goal
 {
     // Members
+    public string Type {get; set;}
     protected string _name = "";
     public string Name
     {
@@ -49,12 +50,8 @@ public abstract class Goal
     /// Returns the goal name as a string 
     /// </summary>
     /// <returns></returns>
-    public abstract string GetStringRepresentation();
+    public abstract string GetDetailsString();
     
-    public virtual string GetDetailsString()
-    {
-        return Description;
-    }
 
     /// <summary>
     /// Record when an event happens 

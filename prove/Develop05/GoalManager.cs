@@ -30,16 +30,18 @@ public class GoalManager
         menu.AddOption("List Goals", DisplayGoals);
         menu.AddOption("Save Goals", SaveDataPrompt);
         menu.AddOption("Load Goals", LoadDataPrompt);
+        menu.AddOption("Record Event", RecordEvent);
         
         while(true)
         {
+            double currentLevel = Math.Floor(Math.Sqrt(Score));
+            double nextLevelScore = Math.Pow(currentLevel + 1, 2);
+            double pointsToLevelUp = nextLevelScore - Score;
+            Console.WriteLine($"\nYou are level {currentLevel}.");
+            Console.WriteLine($"You have {Score} points.");
+            Console.WriteLine($"{pointsToLevelUp} points to level up");
             menu.Run("\nMenu Options:", clearConsole: false);
         }
-    }
-
-    public void DisplayPlayerInformation()
-    {
-        
     }
 
     public void ListGoalNames()
@@ -103,14 +105,41 @@ public class GoalManager
 
     public void RecordEvent()
     {
+        int startingScore = Score;
+        Console.WriteLine("The goals are:");
+        for (int i = 0; i < _goals.Count; i++)
+        {
+            Console.WriteLine($"    {i + 1}. {_goals[i].Name}");
+        }
+        Console.Write("What goal did you accomplish? ");
+        string choice = Console.ReadLine();
+        int choiceInt = int.Parse(choice);
+        Goal goal = _goals[choiceInt - 1];
+        goal.RecordEvent();
+        Score += goal.PointsValue;
+        if (goal is ChecklistGoal checklistGoal)
+        {
+            if (checklistGoal.TimesCompleted == checklistGoal.Target)
+            {
+                Score += checklistGoal.BonusPoints;
+            }
+        }
 
+        Console.WriteLine($"Congratulations! You have earned {Score - startingScore} points!");
+        Console.WriteLine($"You now have {Score} points.");
     }
 
     public void DisplayGoals() 
     {
         for (int i = 0; i < _goals.Count; i++)
         {
-            Console.WriteLine($"    {i + 1}. {_goals[i].GetStringRepresentation()}");
+            if (_goals[i].IsComplete)
+            {
+                Console.WriteLine($"[X] {i + 1}. {_goals[i].GetDetailsString()}");
+            } else
+            {
+                Console.WriteLine($"[ ] {i + 1}. {_goals[i].GetDetailsString()}");
+            }
         }
     }
 
@@ -135,17 +164,72 @@ public class GoalManager
             WriteIndented = true
         };
 
-        string jsonString = JsonSerializer.Serialize(this, options);
+        var goalsData = new List<object>();
+
+        foreach (var goal in _goals)
+        {
+            switch (goal)
+            {
+                case ChecklistGoal checklistGoal:
+                    goalsData.Add(new
+                    {
+                        Type = "ChecklistGoal",
+                        checklistGoal.Name,
+                        checklistGoal.Description,
+                        checklistGoal.PointsValue,
+                        checklistGoal.BonusPoints,
+                        checklistGoal.IsComplete,
+                        checklistGoal.TimesCompleted,
+                        checklistGoal.Target
+                    });
+                    break;
+                default:
+                    goalsData.Add(goal);
+                    break;
+            }
+        }
+
+        var saveData = new
+        {
+            Score = Score,
+            Goals = goalsData
+        };
+
+        string jsonString = JsonSerializer.Serialize(saveData, options);
         File.WriteAllText(dataFile, jsonString);
     }
 
     public void Load(string dataFile)
     {
         var jsonString = File.ReadAllText(dataFile);
+        var tempObject = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(jsonString);
         
-        GoalManager data = JsonSerializer.Deserialize<GoalManager>(jsonString);
-        Score = data.Score;
-        Goals = data.Goals;
+        var goals = JsonSerializer.Deserialize<List<JsonElement>>(tempObject["Goals"].GetRawText());
+        List<string> goalsAsStrings = goals.Select(goal => goal.GetRawText()).ToList();
+
+        Score = tempObject["Score"].GetInt32();
+        Goals = new List<Goal>();
+
+        var goalsJsonElement = tempObject["Goals"];
+
+        foreach (var goalElement in goalsJsonElement.EnumerateArray())
+        {
+            string type = goalElement.GetProperty("Type").GetString();
+
+            switch (type)
+            {
+                case "SimpleGoal":
+                    Goals.Add(JsonSerializer.Deserialize<SimpleGoal>(goalElement.GetRawText()));
+                    break;
+                case "EternalGoal":
+                    Goals.Add(JsonSerializer.Deserialize<EternalGoal>(goalElement.GetRawText()));
+                    break;
+                case "ChecklistGoal":
+                    Goals.Add(JsonSerializer.Deserialize<ChecklistGoal>(goalElement.GetRawText()));
+                    break;
+            }
+        }
+
     }
 
 

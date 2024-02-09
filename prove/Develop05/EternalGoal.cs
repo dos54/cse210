@@ -3,9 +3,14 @@ using System;
 public class EternalGoal : Goal
 {
 
+    public EternalGoal()
+    {
+        Type = "EternalGoal";
+    }
+
     public EternalGoal(string name, string description, int pointsValue) : base(name, description, pointsValue)
     {
-
+        Type = "EternalGoal";
     }
 
 
@@ -14,9 +19,9 @@ public class EternalGoal : Goal
         IsComplete = false;
     }
 
-    public override string GetStringRepresentation()
+    public override string GetDetailsString()
     {
-        return $"{Name} {Description}";
+        return $"{Name} ({Description})";
     }
 
 }

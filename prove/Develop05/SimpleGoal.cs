@@ -2,9 +2,15 @@ using System;
 
 public class SimpleGoal : Goal
 {
+
+    public SimpleGoal()
+    {
+        Type = "SimpleGoal";
+    }
+
     public SimpleGoal(string name, string description, int pointsValue) : base(name, description, pointsValue)
     {
-
+        Type = "SimpleGoal";
     }
 
     public override void RecordEvent()
@@ -12,7 +18,7 @@ public class SimpleGoal : Goal
         IsComplete = true;
     }
 
-    public override string GetStringRepresentation()
+    public override string GetDetailsString()
     {
         return $"{Name} ({Description})";
     }
