@@ -37,7 +37,7 @@
       "Name": "Write daily",
       "Description": "Write in a journal every night",
       "PointsValue": 10,
-      "IsComplete": true
+      "IsComplete": false
     },
     {
       "Type": "ChecklistGoal",

@@ -1,0 +1,15 @@
+
+
+Aspects of a recipe:
+    A recipe has:
+        1. A container
+        2. Ingredients
+        3. An output
+        4. An output amount
+
+    A crafting recipe : recipe has
+        1. Pattern
+        2. key
+
+    A shapeless crafting recipe : recipe has:
+        
