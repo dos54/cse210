@@ -23,6 +23,12 @@ namespace FinalProject
                 1
             );
 
+            MCMeta mCMeta = new MCMeta(26, "A data pack");
+            PackBuilder packBuilder = new();
+            packBuilder.MCMeta = mCMeta;
+            packBuilder.DataPackName = "testPack";
+            packBuilder.BuildPack();
+
             File.WriteAllText("test.json", shapedCraftingRecipe.GetJsonString());
         }
     }
