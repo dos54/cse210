@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Nodes;
 
 namespace FinalProject
 {
@@ -10,7 +11,7 @@ namespace FinalProject
             Experience = experience;
         }
 
-        public override string Type { get; } 
+        public override string Type { get; } = "smelting";
         public Ingredient Ingredient { get; set; }
         public Item Result { get; set; }
         public float Experience { get; set; }
@@ -18,7 +19,41 @@ namespace FinalProject
 
         public override string GetJsonString()
         {
-            throw new NotImplementedException();
+            var ingredientsJsonArray = new JsonArray();
+            
+            
+            if (Ingredient.HasSubstitutes)
+            {
+                foreach (var substitute in Ingredient.Substitutes)
+                {
+                    var substituteObject = new JsonObject
+                    {
+                        ["item"] = JsonValue.Create(substitute.Id)
+                    };
+                    ingredientsJsonArray.Add(substituteObject);
+                }
+            }
+            else
+            {
+                var itemObject = new JsonObject
+                {
+                    ["item"] = JsonValue.Create(Ingredient.Item.Id)
+                };
+                ingredientsJsonArray.Add(itemObject);
+            }
+            
+            var jsonObject = new JsonObject()
+            {
+                { "type", Type },
+                { "ingredient", ingredientsJsonArray},
+                { "result", new JsonObject{
+                    {"item", ResultItem.Id},
+                    {"count", ResultAmount}
+                }},
+                { "experience", Experience},
+                {"cookingtime", CookingTime}
+            };
+            return jsonObject.ToString();
         }
     }
 }

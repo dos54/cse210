@@ -13,10 +13,17 @@ namespace FinalProject
             Directory.CreateDirectory($"{rootDirectory}\\data");
             string namespaceDir = $"{rootDirectory}\\data\\{DataPackName}";
             Directory.CreateDirectory(namespaceDir);
-            Directory.CreateDirectory($"{namespaceDir}\\recipes");
+            string recipesDir = $"{namespaceDir}\\recipes";
+            Directory.CreateDirectory(recipesDir);
             Directory.CreateDirectory($"{namespaceDir}\\tags");
 
 
+        }
+
+        public void AddRecipe(string fileName, string recipeAsJson) 
+        {
+            string recipesDir = $"{_path}\\{DataPackName}\\data\\{DataPackName}\\recipes";
+            File.WriteAllText($"{recipesDir}\\{fileName}.json", recipeAsJson);
         }
     }
 }
